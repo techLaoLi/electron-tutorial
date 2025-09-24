@@ -1,0 +1,103 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Electron Todo</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, 'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+            margin: 24px;
+        }
+
+        #app {
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        form {
+            display: flex;
+            gap: 8px;
+        }
+
+        input {
+            flex: 1;
+            padding: 8px 10px;
+        }
+
+        button {
+            padding: 8px 12px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 16px;
+        }
+
+        li {
+            padding: 8px 10px;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        li.done {
+            color: #999;
+            text-decoration: line-through;
+        }
+
+        .hint {
+            color: #666;
+            font-size: 12px;
+            margin-top: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <h1>待办事项</h1>
+        <form id="f">
+            <input id="i" placeholder="添加待办" autocomplete="off" />
+            <button type="submit">添加</button>
+        </form>
+        <div class="hint">点击切换完成状态；右键删除。</div>
+        <ul id="list"></ul>
+    </div>
+
+    <script type="module">
+        const listEl = document.getElementById('list')
+        const input = document.getElementById('i')
+        const form = document.getElementById('f')
+
+        async function render() {
+            const todos = await window.todo.list()
+            listEl.innerHTML = ''
+            for (const t of todos) {
+                const li = document.createElement('li')
+                li.textContent = t.text
+                if (t.done) li.classList.add('done')
+                li.onclick = async () => { await window.todo.toggle(t.id); render() }
+                li.oncontextmenu = async (e) => { e.preventDefault(); await window.todo.remove(t.id); render() }
+                listEl.appendChild(li)
+            }
+        }
+
+        form.onsubmit = async (e) => {
+            e.preventDefault()
+            const v = input.value.trim()
+            if (!v) return
+            await window.todo.add(v)
+            input.value = ''
+            render()
+        }
+
+        render()
+    </script>
+</body>
+
+</html>
