@@ -28,9 +28,11 @@ function createMainWindow() {
         webPreferences: {
             preload: getPreloadPath(),
             contextIsolation: true,
-            nodeIntegration: false
+            nodeIntegration: false,
         }
     })
+
+    mainWindow.webContents.openDevTools();
 
     mainWindow.loadFile(getRendererIndexHtml())
     mainWindow.on('closed', () => { mainWindow = null })
