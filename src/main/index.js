@@ -32,6 +32,8 @@ function createMainWindow() {
         }
     })
 
+    mainWindow.webContents.openDevTools();
+
     mainWindow.loadFile(getRendererIndexHtml())
     mainWindow.on('closed', () => { mainWindow = null })
 }

@@ -3,8 +3,8 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="Content-Security-Policy"
-        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'">
+    <!-- <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"> -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Electron Todo</title>
     <style>
@@ -69,35 +69,7 @@
         <ul id="list"></ul>
     </div>
 
-    <script type="module">
-        const listEl = document.getElementById('list')
-        const input = document.getElementById('i')
-        const form = document.getElementById('f')
-
-        async function render() {
-            const todos = await window.todo.list()
-            listEl.innerHTML = ''
-            for (const t of todos) {
-                const li = document.createElement('li')
-                li.textContent = t.text
-                if (t.done) li.classList.add('done')
-                li.onclick = async () => { await window.todo.toggle(t.id); render() }
-                li.oncontextmenu = async (e) => { e.preventDefault(); await window.todo.remove(t.id); render() }
-                listEl.appendChild(li)
-            }
-        }
-
-        form.onsubmit = async (e) => {
-            e.preventDefault()
-            const v = input.value.trim()
-            if (!v) return
-            await window.todo.add(v)
-            input.value = ''
-            render()
-        }
-
-        render()
-    </script>
+    <script src="./index.js"></script>
 </body>
 
 </html>
