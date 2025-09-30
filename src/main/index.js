@@ -28,7 +28,7 @@ function createMainWindow() {
         webPreferences: {
             preload: getPreloadPath(),
             contextIsolation: true,
-            nodeIntegration: false
+            nodeIntegration: false,
         }
     })
 
