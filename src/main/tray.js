@@ -8,18 +8,21 @@ const __dirname = path.dirname(__filename)
 let tray = null
 
 export function createTrayIfAvailable() {
-    try {
-        const iconPath = path.join(__dirname, '../../assets/trayTemplate.png')
-        const icon = nativeImage.createFromPath(iconPath)
-        if (!icon || icon.isEmpty()) return
-
+	try {
+        const iconPath = path.join(__dirname, '../assets/tray.png')
+        let icon = nativeImage.createFromPath(iconPath);
+        const isMac = process.platform === 'darwin'
+		const targetSize = isMac ? 18 : 16
+        icon = icon.resize({ width: targetSize, height: targetSize })
         tray = new Tray(icon)
         const menu = Menu.buildFromTemplate([
-            { label: '显示主窗口', click: () => BrowserWindow.getAllWindows()[0]?.show() },
-            { type: 'separator' },
-            { label: '退出', click: () => app.quit() }
-        ])
-        tray.setToolTip('Electron Todo')
-        tray.setContextMenu(menu)
-    } catch { }
+			{ label: '显示主窗口', click: () => BrowserWindow.getAllWindows()[0]?.show() },
+			{ type: 'separator' },
+			{ label: '退出', click: () => app.quit() }
+		])
+		tray.setToolTip('Electron Todo')
+		tray.setContextMenu(menu)
+	} catch (e) {
+		console.error('[tray] createTrayIfAvailable error:', e)
+	}
 }
