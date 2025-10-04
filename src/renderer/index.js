@@ -1,6 +1,25 @@
 const listEl = document.getElementById('list')
 const input = document.getElementById('i')
 const form = document.getElementById('f')
+const openFileButton = document.getElementById('openFile')
+const writeTextButton = document.getElementById('writeText')
+const writeTextContent = document.getElementById('writeTextContent')
+const saveFileButton = document.getElementById('saveFile')
+
+openFileButton.onclick = async () => {
+    const filePath = await window.todo.openFile()
+    console.log('filePath', filePath)
+}
+
+writeTextButton.onclick = async () => {
+    const filePath = await window.todo.writeText(writeTextContent.value)
+    console.log('filePath', filePath)
+}
+
+saveFileButton.onclick = async () => {
+    const filePath = await window.todo.saveFile()
+    console.log('filePath', filePath)
+}
 
 async function render() {
     console.log('window.todo', window.todo)

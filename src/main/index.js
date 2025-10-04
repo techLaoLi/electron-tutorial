@@ -2,6 +2,7 @@ import { app, BrowserWindow, Tray, Menu, nativeImage } from 'electron'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { registerIpcHandlers } from './ipc.js'
+import { registerFileIpcHandlers } from './file.js'
 import { createAppMenu } from './menu.js'
 import { registerShortcuts, unregisterAllShortcuts } from './shortcuts.js'
 import { createTrayIfAvailable } from './tray.js'
@@ -44,6 +45,7 @@ app.whenReady().then(() => {
     registerShortcuts()
     createTrayIfAvailable()
     registerIpcHandlers()
+    registerFileIpcHandlers()
 })
 
 app.on('window-all-closed', () => {
