@@ -1,14 +1,17 @@
 appId: com.example.electrontodo
 files:
-  - dist/**
   - src/**
   - package.json
+  - "!dist/**"
 mac:
   category: public.app-category.productivity
 win:
   target:
     - nsis
+    - zip
 linux:
   target:
     - AppImage
   category: Utility
+nsis:
+  differentialPackage: false

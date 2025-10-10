@@ -1,12 +1,16 @@
 {
     "name": "electron-todo-example",
     "version": "1.0.0",
+    "description": "A simple todo application built with Electron",
+    "author": "electron-todo-example",
     "private": true,
     "main": "src/main/index.js",
     "type": "module",
     "scripts": {
         "start": "electron .",
-        "build": "electron-builder"
+        "build": "electron-builder",
+        "build:all": "electron-builder --mac --win --linux",
+        "build:win": "electron-builder --win"
     },
     "devDependencies": {
         "electron": "^31.0.0",
