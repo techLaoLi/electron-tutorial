@@ -78,11 +78,34 @@ npx electron-builder
 ```json
 {
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-builder",
+    "build:all": "electron-builder --mac --win --linux",
+    "build:win": "electron-builder --win",
+    "build:mac": "electron-builder --mac"
   }
 }
 ```
+### build命令
 
+该命令用于构建 Electron 应用。
+如果你的机器是mac、则该命令会自动构建mac版本。
+如果你的机器是windows、则该命令会自动构建windows版本。
+如果你的机器是linux、则该命令会自动构建linux版本。
+
+### build:all命令
+
+该命令用于构建 Electron 应用，并同时构建mac、windows、linux版本。
+问题：构建过程中可能会出现错误，因为本地机器的系统和架构不同，某些工具支持受限，导致构建出错。
+建议：要构建某一个系统版本的应用，可以使用对应的机器进行构建。（electron-builder，官方文档中也是这样说明的）
+
+### build:win命令
+
+该命令用于构建 Electron 应用，并构建windows版本。
+
+### build:mac命令
+
+该命令用于构建 Electron 应用，并构建mac版本。
 
 ## 许可证
 

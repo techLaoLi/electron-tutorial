@@ -10,7 +10,8 @@
         "start": "electron .",
         "build": "electron-builder",
         "build:all": "electron-builder --mac --win --linux",
-        "build:win": "electron-builder --win"
+        "build:win": "electron-builder --win",
+        "build:mac": "electron-builder --mac"
     },
     "devDependencies": {
         "electron": "^31.0.0",
