@@ -13,7 +13,16 @@
 - 07 文件系统与原生能力：受控封装与安全调用
 - 08 打包与发布（electron-builder）：多平台产物与基本配置
 - 09 自动更新与崩溃上报：更新流程与日志/监控接入
-- 10 实战：待办事项应用：综合前文完成可打包的 Todo App
+- 10 不同类型的安装包的介绍和对比
+- 11 实战：待办事项应用：综合前文完成可打包的 Todo App
+- 12 electron专题（electron-builder）：深入 electron-builder 的高级配置
+- 13 electron专题（entitlements 配置）：macOS 权限配置详解
+- 14 electron专题（macOS 代码签名）：Electron 应用在 macOS 上的代码签名实践
+- 15 electron专题（electron-updater）：深入理解 Electron 自动更新机制
+- 16 electron专题（electron-debug）：Electron 调试工具
+- 17 electron专题（electron-notarize）：macOS 签名
+- 18 electron专题（electron-log）：日志记录与监控
+- 19 electron专题（electron-store）：本地数据存储
 
 详细内容请阅读 `docs/` 中对应章节。
 
@@ -86,6 +95,7 @@ npx electron-builder
   }
 }
 ```
+
 ### build命令
 
 该命令用于构建 Electron 应用。
